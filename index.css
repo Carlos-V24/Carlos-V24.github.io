@@ -1,0 +1,155 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Diseño de la barra superior de opciones*/
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav span{
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav span:hover {
+  background-color: #ddd;
+  color: black;
+  cursor: pointer;
+}
+
+.topnav span.active {
+  background-color: #007E06;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+/*Diseño de los inputs y botones*/
+input[type=number], input[type=date]{
+  width: 90%;
+  padding: 12px 20px;
+  margin: 8px 5%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #007E06;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 25%;
+  border: none;
+  cursor: pointer;
+  width: inherit;
+  width: 50%;
+}
+
+#container{
+  margin: 2rem 0 0 0;
+}
+
+/*Diseño especial para los checkmark d*/
+.container {
+  position: relative;
+  padding-left: 20px;
+  margin: 20px 10px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1rem;
+  width: 1rem;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: #007E06;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/*Propiedades extras para una interfaz más intuitiva*/
+#cont-dwld{
+  display: flex;
+  background-color: #eee;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.options-dwld{
+  display: flex;
+  margin-right: 40px;
+  flex-wrap: wrap;
+}
+
+#info{
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 0.5rem 0;
+  margin-top: 15px;
+}
+#info>span{
+  margin: 0.5rem 1rem;
+}
+#info, #fecha, #cont-dwld{
+  display: none;
+}
+
+
+@media (min-width: 600px) {
+  input[type=number], input[type=date]{
+    width: 150px;
+    margin: 8px 5px;
+  }
+  button {
+    width: initial;
+    margin: 8px 0;
+  }
+  #container{
+    margin: 2rem 5% 0 5%;
+    width: 90%;
+  }
+  #cont-dwld{
+    justify-content:start;
+  }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="node_modules/highcharts/highcharts.js"></script>
+    <script src="node_modules/highcharts/modules/accessibility.js"></script>
+    <title>Aero Design - Actividad 3</title>
+</head>
+<body>
+    <div class="topnav">
+        <span id="Mes" class="active">Clima mes</span>
+        <span id="Hora" >Clima hora</span>
+      </div>
+    <div>
+        <input type="number" name="latitude" id="lat" value="19.4326296" placeholder="Latitude">
+        <input type="number" name="longitude" id="lon" value="-99.1331785" placeholder="Longitud">
+        <input type="date" name="fehca" id="fecha">
+        <button id="checar">Checar</button>
+    </div>
+    <div id="container"></div>
+    <div id="info">
+        <span>Eliga el formato de descarga</span>
+    </div>
+    <div id="cont-dwld">
+        <div class="options-dwld">
+            <label class="container">.json
+              <input type="radio" name="download" value="JSON" checked>
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">.csv
+              <input type="radio" name="download" value="CSV">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">.txt
+              <input type="radio" name="download" value="TXT">
+              <span class="checkmark"></span>
+            </label>
+        </div>
+        <button id="descargar">Descargar</button>
+    </div>
+</body>
+<script src="./index.js"></script>
+</html>
