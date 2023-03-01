@@ -46,5 +46,12 @@ const options = {
   }
   
   document.querySelector("#Start").addEventListener("click", ()=>{
-    navigator.geolocation.getCurrentPosition(success, error, options)
+    var mainLoopId = setInterval(function(){
+        navigator.geolocation.getCurrentPosition(success, error, options)
+    }, 1000);
+
   })
+  document.querySelector("#Detener").addEventListener("click", ()=>{
+    clearInterval(mainLoopId);
+  })
+
