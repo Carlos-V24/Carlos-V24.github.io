@@ -7,14 +7,6 @@ const options = {
   var s = 0;
   function success(pos) {
     const crd = pos.coords;
-  
-    console.log("Your current position is:");
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`altitude: ${crd.altitude}`);
-    console.log(`speed: ${crd.speed}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-    console.log(crd);
     
     let lat = document.createElement("td")
     let long = document.createElement("td")
