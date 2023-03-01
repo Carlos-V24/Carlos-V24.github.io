@@ -1,41 +1,50 @@
-function geoFindMe() {
+const options = {
+    enableHighAccuracy: false,
+    timeout: 1000,
+    maximumAge: 0,
+  };
   
-    function success(position) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+  var s = 0;
+  function success(pos) {
+    const crd = pos.coords;
   
-      status.textContent = "";
-      mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-      mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
-    }
-  
-    function error() {
-      status.textContent = "Unable to retrieve your location";
-    }
-  
-    if (!navigator.geolocation) {
-      status.textContent = "Geolocation is not supported by your browser";
-    } else {
-      status.textContent = "Locating…";
-      navigator.geolocation.getCurrentPosition(success, error);
-    }
-  }
+    console.log("Your current position is:");
+    console.log(`Latitude : ${crd.latitude}`);
+    console.log(`Longitude: ${crd.longitude}`);
+    console.log(`altitude: ${crd.altitude}`);
+    console.log(`speed: ${crd.speed}`);
+    console.log(`More or less ${crd.accuracy} meters.`);
+    console.log(crd);
+    
+    let lat = document.createElement("td")
+    let long = document.createElement("td")
+    let alt = document.createElement("td")
+    let spd = document.createElement("td")
+    let acc = document.createElement("td");
+    let time = document.createElement("td");
 
-  if (window.DeviceMotionEvent == undefined) {
-    //No accelerometer is present. Use buttons. 
-    alert("no accelerometer");
-    }
-    else {
-        alert("accelerometer found");
-        window.addEventListener("devicemotion", accelerometerUpdate, true);
-        console.log("try")
-    }
-    function accelerometerUpdate(e) {
-        var aX = event.accelerationIncludingGravity.x*1;
-        var aY = event.accelerationIncludingGravity.y*1;
-        var aZ = event.accelerationIncludingGravity.z*1;
-        //The following two lines are just to calculate a
-        // tilt. Not really needed. 
-        xPosition = Math.atan2(aY, aZ);
-        yPosition = Math.atan2(aX, aZ);
-     }
+    time.innerText = Date.now();
+    lat.innerText = crd.latitude;
+    long.innerText = crd.longitude;
+    alt.innerText = crd.altitude;
+    spd.innerText = crd.speed;
+    acc.innerText = crd.accuracy;
+
+    let tr = document.createElement("tr")
+
+    tr.appendChild(time)//Tiempo
+    tr.appendChild(lat)
+    tr.appendChild(long)
+    tr.appendChild(alt)
+    tr.appendChild(spd)
+    tr.appendChild(acc)
+    document.querySelector("#info").appendChild(tr)
+  }
+  
+  function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
+  
+  document.querySelector("#Start").addEventListener("click", ()=>{
+    navigator.geolocation.getCurrentPosition(success, error, options)
+  })
