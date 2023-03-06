@@ -75,8 +75,8 @@ var calibracion={
   
   /*Iniciador del código*/
   let is_running = false;
-  let demo_button = document.getElementById("Start");
-  demo_button.onclick = function(e) {
+  let btnGrabar = document.getElementById("Start");
+  btnGrabar.onclick = function(e) {
     e.preventDefault();
     
     // Request permission for iOS 13+ devices
@@ -88,13 +88,13 @@ var calibracion={
     }
     
     if (is_running){
-      window.removeEventListener("devicemotion", handleMotion);
-      window.removeEventListener("deviceorientation", handleOrientation);
-      demo_button.innerHTML = "Iniciar registro";
-      demo_button.classList.add('btn-start');
-      demo_button.classList.remove('btn-stop');
+        window.removeEventListener("devicemotion", handleMotion);
+        window.removeEventListener("deviceorientation", handleOrientation);
+      btnGrabar.innerHTML = "Iniciar registro";
+      btnGrabar.classList.add('btn-start');
+      btnGrabar.classList.remove('btn-stop');
       document.getElementById("Calib").style.display = "block";
-      document.getElementById("Data").style.display = "block";
+      //document.getElementById("Data").style.display = "block";
       is_running = false;
       /*const mainLoopId = setInterval(function(){
             navigator.geolocation.getCurrentPosition(success, error, options)
@@ -104,9 +104,9 @@ var calibracion={
       window.addEventListener("deviceorientation", handleOrientation);
       document.getElementById("Start").innerHTML = "Detener registro";
       document.getElementById("Calib").style.display = "none";
-      document.getElementById("Data").style.display = "none";
-      demo_button.classList.remove('btn-start');
-      demo_button.classList.add('btn-stop');
+      //document.getElementById("Data").style.display = "none";
+      btnGrabar.classList.remove('btn-start');
+      btnGrabar.classList.add('btn-stop');
       is_running = true;
     }
   };
