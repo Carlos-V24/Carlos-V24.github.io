@@ -1,0 +1,36 @@
+.btn-start{
+    background-color: #0e7e0e;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 0.5rem;
+    border: 0 #000;
+}
+.btn-stop{
+    background-color: #a82e2e;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 0.5rem;
+    border: 0 #000;
+}
+.btn-calib{
+    background-color: #283ea0;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 0.5rem;
+    border: 0 #000;
+}
+
+.btn-start:hover{
+background-color: #13b913;
+transition: linear 0.1s;
+text-shadow: 2px #000;
+}
+#info{
+    display: none;
+}
