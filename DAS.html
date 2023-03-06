@@ -29,13 +29,6 @@
     <button class="btn-start" id="Start">Iniciar registro</button>
     <button class="btn-calib" id="Calib"> SET ZERO</button>
     <div id="Data">
-        <div class="gps-data">
-            <h2>GPS</h2>
-            <div>
-                <p>Latitud: <span id="lat"></span></p>
-                <p>Longitud: <span id="lon"></span></p>
-            </div>
-        </div>
         <div class="acel-data">
             <h2>Acelerometro</h2>
             <div>
@@ -71,15 +64,18 @@
     </div>
     <table id="info">
         <tr>
-            <th>tiempo</th>
-            <th>Latitud</th>
+            <th>tiempo [ms]</th>
+            <th>Latitud </th>
             <th>Longitud</th>
-            <th>altitud</th>
-            <th>velocidad</th>
+            <th>altitud </th>
+            <th>velocidad [m/s]</th>
             <th>precision [m]</th>
             <th>aX [m/s^2]</th>
             <th>aY [m/s^2]</th>
             <th>aZ [m/s^2]</th>
+            <th>agX [m/s^2]</th>
+            <th>agY [m/s^2]</th>
+            <th>agZ [m/s^2]</th>
         </tr>
     </table>
     <script src="script.js"></script>
