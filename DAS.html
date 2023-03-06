@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DAS - UNAM AERODESIGN</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         table {
           border-collapse: collapse;
@@ -25,17 +26,57 @@
         </style>
 </head>
 <body>
-    <button id="Start">Iniciar registro</button>
-    <button id="Detener"> Detener registro</button>
-
+    <button class="btn-start" id="Start">Iniciar registro</button>
+    <button class="btn-calib" id="Calib"> SET ZERO</button>
+    <div id="Data">
+        <div class="gps-data">
+            <h2>GPS</h2>
+            <div>
+                <p>Latitud: <span id="lat"></span></p>
+                <p>Longitud: <span id="lon"></span></p>
+            </div>
+        </div>
+        <div class="acel-data">
+            <h2>Acelerometro</h2>
+            <div>
+                <p>X-axis: <span id="a-x"></span></p>
+                <p>Y-axis: <span id="a-y"></span></p>
+                <p>Z-axis: <span id="a-z"></span></p>
+            </div>
+        </div>
+        <div class="gAcel-data">
+            <h2>Acelerometro con gravedad</h2>
+            <div>
+                <p>X-axis: <span id="a-gx"></span></p>
+                <p>Y-axis: <span id="a-gy"></span></p>
+                <p>Z-axis: <span id="a-gz"></span></p>
+            </div>
+        </div>
+        <div class="ori-data">
+            <h2>Orientacion</h2>
+            <div>
+                <p>X-axis: <span id="o-x"></span></p>
+                <p>Y-axis: <span id="o-y"></span></p>
+                <p>Z-axis: <span id="o-z"></span></p>
+            </div>
+        </div>
+        <div class="gyro-data">
+            <h2>Gyroscopio</h2>
+            <div>
+                <p>X-axis: <span id="g-x"></span></p>
+                <p>Y-axis: <span id="g-y"></span></p>
+                <p>Z-axis: <span id="g-z"></span></p>
+            </div>
+        </div>
+    </div>
     <table id="info">
         <tr>
-            <th>tiempo </th>
+            <th>tiempo</th>
             <th>Latitud</th>
             <th>Longitud</th>
             <th>altitud</th>
-            <th>speed</th>
-            <th>acurracy [m]</th>
+            <th>velocidad</th>
+            <th>precision [m]</th>
             <th>aX [m/s^2]</th>
             <th>aY [m/s^2]</th>
             <th>aZ [m/s^2]</th>
