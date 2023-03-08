@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DAS - UNAM AERODESIGN</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
     <style>
         table {
           border-collapse: collapse;
           width: 100%;
+          border-spacing: 0;
+          max-height: 400px;
         }
         
         th, td {
@@ -18,16 +22,89 @@
         }
         
         tr:nth-child(even){background-color: #f2f2f2}
+        tr:nth-child(odd){background-color: #beffb6}
         
         th {
           background-color: #04AA6D;
           color: white;
         }
+        body{
+    background-color: #000;
+    font-family: 'Rubik', sans-serif;
+
+}
+.btn-init{
+padding: 1rem;
+width: 100%;
+font-size: 2rem;
+background-color: cyan;
+border: 0;
+color: aliceblue;
+text-shadow: #000 1px 1px;
+border-radius: 25px;
+cursor: pointer;
+}
+.btn-start{
+    background-color: #0e7e0e;
+    color: white;
+    font-size: 2rem;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 0.5rem;
+    border: 0 #000;
+}
+.btn-stop{
+    background-color: #a82e2e;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 0.5rem;
+    border: 0 #000;
+}
+.btn-calib{
+    background-color: #283ea0;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 0.5rem;
+    border: 0 #000;
+}
+.btn-otros{
+    display: none;
+}
+.btn-start:hover{
+background-color: #13b913;
+transition: linear 0.1s;
+text-shadow: 2px #000;
+}
+#Data{
+    display: none;
+    color: #fff;
+}
+.tabla{
+    margin-top: 50px;
+    overflow:scroll;
+    height:200px;
+    width:100%;
+    display: none;
+}
+th {
+    position: sticky;
+    top: 0; /* Don't forget this, required for the stickiness */
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+  }
+
         </style>
 </head>
 <body>
-    <button class="btn-start" id="Start">Iniciar registro</button>
-    <button class="btn-calib" id="Calib"> SET ZERO</button>
+    <button class="btn-init" id="Inicio">Iniciar</button>
+    <span class="btn-otros">
+        <button class="btn-start" id="Start">Iniciar grabacion</button>
+        <button class="btn-calib" id="Calib"> SET ZERO</button>
+    </span>
     <div id="Data">
         <div class="acel-data">
             <h2>Acelerometro</h2>
@@ -62,50 +139,352 @@
             </div>
         </div>
     </div>
-    <table id="info">
-        <tr>
-            <th>tiempo [ms]</th>
-            <th>Latitud </th>
-            <th>Longitud</th>
-            <th>altitud </th>
-            <th>velocidad [m/s]</th>
-            <th>precision [m]</th>
-        </tr>
-    </table>
-    <table id="info_acel">
-        <tr>
-            <th>tiempo [ms]</th>
-            <th>aX [m/s^2]</th>
-            <th>aY [m/s^2]</th>
-            <th>aZ [m/s^2]</th>
-            <th>agX [m/s^2]</th>
-            <th>agY [m/s^2]</th>
-            <th>agZ [m/s^2]</th>
-            <th>rX [m/s^2]</th>
-            <th>rY [m/s^2]</th>
-            <th>rZ [m/s^2]</th>
-        </tr>
-    </table>
-    <table id="info_ori">
-        <tr>
-            <th>tiempo [ms]</th>
-            <th>X [°]</th>
-            <th>Y [°]</th>
-            <th>Z [°]</th>
-        </tr>
-        <tr>
-            <td>sa</td>
-            <td>sd</td>
-            <td>dsa</td>
-            <td>dsa</td>
-        </tr>
-        <tr>
-            <td>dsf</td>
-            <td>dsf</td>
-            <td>dsf</td>
-            <td>dsf</td>
-        </tr>
-    </table>
-    <script src="script.js"></script>
+    <div class="tabla">
+        <table id="info">
+            <tr>
+                <th>hora</th>
+                <th>tiempo [ms]</th>
+                <th>Latitud </th>
+                <th>Longitud</th>
+                <th>altitud </th>
+                <th>velocidad [m/s]</th>
+                <th>precision [m]</th>
+            </tr>
+        </table>
+    </div>
+    <div class="tabla">
+        <table id="info_acel">
+            <tr>
+                <th>hora</th>
+                <th>tiempo [ms]</th>
+                <th>aX [m/s^2]</th>
+                <th>aY [m/s^2]</th>
+                <th>aZ [m/s^2]</th>
+                <th>agX [m/s^2]</th>
+                <th>agY [m/s^2]</th>
+                <th>agZ [m/s^2]</th>
+                <th>rX [m/s^2]</th>
+                <th>rY [m/s^2]</th>
+                <th>rZ [m/s^2]</th>
+            </tr>
+        </table>
+    </div>
+    <div class="tabla">
+        <table id="info_ori">
+            <tr>
+                <th>hora</th>
+                <th>tiempo [ms]</th>
+                <th>X [°]</th>
+                <th>Y [°]</th>
+                <th>Z [°]</th>
+            </tr>
+        </table>
+    </div>
+    <script>
+        const options = {
+    enableHighAccuracy: true,
+    timeout: 1000,
+    maximumAge: 0,
+  };
+var calibracion={
+    gyroX: 0,
+    gyroY: 0,
+    tiempo: 0,
+};
+var gyroVal={
+    x: 0,
+    y: 0
+}
+
+function tableToCSV(id, fileName) {
+ 
+    // Variable to store the final csv data
+    var csv_data = [];
+ 
+    // Get each row data
+    var rows = document.querySelectorAll("#"+id+" tr")
+    ;
+    for (var i = 0; i < rows.length; i++) {
+ 
+        // Get each column data
+        var cols = rows[i].querySelectorAll('td,th');
+ 
+        // Stores each csv row data
+        var csvrow = [];
+        for (var j = 0; j < cols.length; j++) {
+ 
+            // Get the text data of each cell of
+            // a row and push it to csvrow
+            csvrow.push(cols[j].innerHTML);
+        }
+ 
+        // Combine each column value with comma
+        csv_data.push(csvrow.join(","));
+    }
+    // combine each row data with new line character
+    csv_data = csv_data.join('\n');
+    downloadCSVFile(csv_data, fileName)
+}
+function downloadCSVFile(csv_data, fieldName) {
+ 
+    // Create CSV file object and feed our
+    // csv_data into it
+    CSVFile = new Blob([csv_data], { type: "text/csv" });
+ 
+    // Create to temporary link to initiate
+    // download process
+    var temp_link = document.createElement('a');
+ 
+    // Download csv file
+    temp_link.download = fieldName+".csv";
+    var url = window.URL.createObjectURL(CSVFile);
+    temp_link.href = url;
+ 
+    // This link should not be displayed
+    temp_link.style.display = "none";
+    document.body.appendChild(temp_link);
+ 
+    // Automatically click the link to trigger download
+    temp_link.click();
+    document.body.removeChild(temp_link);
+}
+function success(pos) {
+    const crd = pos.coords;
+    console.log(crd);
+    
+    let lat = document.createElement("td")
+    let long = document.createElement("td")
+    let alt = document.createElement("td")
+    let spd = document.createElement("td")
+    let acc = document.createElement("td");
+    let time = document.createElement("td");
+    let hour = document.createElement("td");
+    const d = new Date();
+    let text = d.toLocaleString();
+
+    hour.innerText = (text);
+    time.innerText = (Date.now()-calibracion.tiempo);
+    lat.innerText = crd.latitude
+    long.innerText = crd.longitude
+    if (crd.alt !=null) {
+        alt.innerText = crd.altitude
+    } else {
+        alt.innerText = 0;
+    }
+    if (crd.speed !=null) {
+        spd.innerText = crd.speed
+    } else {
+        spd.innerText = 0;
+    }
+    acc.innerText = crd.accuracy
+    
+    let tr = document.createElement("tr")
+    
+    tr.appendChild(hour)//Tiempo
+    tr.appendChild(time)//Tiempo
+    tr.appendChild(lat)
+    tr.appendChild(long)
+    tr.appendChild(alt)
+    tr.appendChild(spd)
+    tr.appendChild(acc)
+    document.querySelector("#info").appendChild(tr)
+}
+
+function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+/*Codigo externo*/
+function handleOrientation(event) {
+    updateFieldIfNotNull('o-x', event.alpha);
+    updateFieldIfNotNull('o-y', event.beta);
+    updateFieldIfNotNull('o-z', event.gamma);
+}
+function handleMotion(event) {
+    updateFieldIfNotNull('a-gx', event.accelerationIncludingGravity.x);
+    updateFieldIfNotNull('a-gy', event.accelerationIncludingGravity.y);
+    updateFieldIfNotNull('a-gz', event.accelerationIncludingGravity.z);
+    
+    updateFieldIfNotNull('a-x', event.acceleration.x);
+    updateFieldIfNotNull('a-y', event.acceleration.y);
+    updateFieldIfNotNull('a-z', event.acceleration.z);
+    
+    if (event.rotationRate.alpha == null) {
+        updateFieldIfNotNull('o-x', acelToGyroX(event.accelerationIncludingGravity.x, event.accelerationIncludingGravity.y, event.accelerationIncludingGravity.z)[0]);
+        updateFieldIfNotNull('o-y', acelToGyroX(event.accelerationIncludingGravity.x, event.accelerationIncludingGravity.y, event.accelerationIncludingGravity.z)[1]);
+    } else {
+        updateFieldIfNotNull('g-x', event.rotationRate.alpha);
+        updateFieldIfNotNull('g-y', event.rotationRate.beta);
+        updateFieldIfNotNull('g-z', event.rotationRate.gamma);
+    }
+}
+function dataOrientation(event) {
+    let t = document.createElement("td")
+    let a = document.createElement("td")
+    let b = document.createElement("td")
+    let g = document.createElement("td")
+    let hour = document.createElement("td");
+    const d = new Date();
+    let text = d.toLocaleString();
+
+    hour.innerText = (text);
+    t.innerText = (Date.now()-calibracion.tiempo);
+    a.innerText = event.alpha;
+    b.innerText = event.beta;
+    g.innerText = event.gamma;
+    
+    let tr = document.createElement("tr")
+    
+    tr.appendChild(hour)//Tiempo
+    tr.appendChild(t)//Tiempo
+    tr.appendChild(a)
+    tr.appendChild(b)
+    tr.appendChild(g)
+    document.querySelector("#info_ori").appendChild(tr)
+}
+function dataMotion(event) {
+
+    let t = document.createElement("td")
+    let aX = document.createElement("td")
+    let aY = document.createElement("td")
+    let aZ = document.createElement("td")
+    let agX = document.createElement("td")
+    let agY = document.createElement("td")
+    let agZ = document.createElement("td")
+    let rX = document.createElement("td")
+    let rY = document.createElement("td")
+    let rZ = document.createElement("td")
+    let hour = document.createElement("td");
+    const d = new Date();
+    let text = d.toLocaleString();
+
+    hour.innerText = (text);
+    t.innerText = (Date.now()-calibracion.tiempo);
+    aX.innerText = event.acceleration.x;
+    aY.innerText = event.acceleration.y;
+    aZ.innerText = event.acceleration.z;
+    agX.innerText = event.accelerationIncludingGravity.x;
+    agY.innerText = event.accelerationIncludingGravity.y;
+    agZ.innerText = event.accelerationIncludingGravity.z;
+
+    if (event.rotationRate.alpha == null) {
+        rX.innerText = acelToGyroX(event.accelerationIncludingGravity.x, event.accelerationIncludingGravity.y, event.accelerationIncludingGravity.z)[0];
+        rY.innerText = acelToGyroX(event.accelerationIncludingGravity.x, event.accelerationIncludingGravity.y, event.accelerationIncludingGravity.z)[1];
+        rZ.innerText = 0;
+    } else {
+        rX.innerText = event.rotationRate.alpha;
+        rY.innerText = event.rotationRate.beta;
+        rZ.innerText = event.rotationRate.gamma;
+    }
+    
+    let tr = document.createElement("tr")
+    
+    tr.appendChild(hour)//Tiempo
+    tr.appendChild(t)//Tiempo
+    tr.appendChild(aX)
+    tr.appendChild(aY)
+    tr.appendChild(aZ)
+    tr.appendChild(agX)
+    tr.appendChild(agY)
+    tr.appendChild(agZ)
+    tr.appendChild(rX)
+    tr.appendChild(rY)
+    tr.appendChild(rZ)
+    document.querySelector("#info_acel").appendChild(tr)
+}
+function updateFieldIfNotNull(fieldName, value, precision=10){
+    if (value != null){
+        document.getElementById(fieldName).innerHTML = value.toFixed(precision);
+    }
+}
+function grabarDatos() {
+    changeGps();
+    window.removeEventListener("devicemotion", handleMotion);
+    window.removeEventListener("deviceorientation", handleOrientation);
+    window.addEventListener("devicemotion", dataMotion);
+    window.addEventListener("deviceorientation", dataOrientation);
+}
+var gps = false;
+function changeGps () {
+    if (gps === false) {
+        gps = setInterval(function(){
+            navigator.geolocation.getCurrentPosition(success, error, options);
+        }, 100);
+    } else {
+        window.clearInterval(gps);
+        gps = false;
+    }
+}
+
+function acelToGyroX(aX, aY, aZ){
+    var gx, gy;
+    gx = Math.atan(aX /Math.sqrt(Math.pow(aY,2)+Math.pow(aZ,2)))*(180.0/Math.PI);
+    gy = Math.atan(aY /Math.sqrt(Math.pow(aX,2)+Math.pow(aZ,2)))*(180.0/Math.PI);
+    
+    return [gx, gy]
+}
+
+
+
+let is_running = false;
+
+const btnInit = document.getElementById("Inicio");
+const btnGrabar = document.getElementById("Start");
+const divDataCalib = document.getElementById("Data");
+
+btnInit.addEventListener("click", ()=>{
+    //Fase 1 de diseño
+    btnInit.style.display = "none";
+    document.querySelector(".btn-otros").style.display = "block";
+    divDataCalib.style.display = "block";
+    document.getElementById("Calib").style.display = "none";
+    window.addEventListener("devicemotion", handleMotion);
+    window.addEventListener("deviceorientation", handleOrientation);
+})
+
+btnGrabar.onclick = function(e) {
+    e.preventDefault();
+    calibracion.tiempo = Date.now();
+    var d = new Date();
+    let text = d.toLocaleString();
+    // Request permission for iOS 13+ devices
+    if (
+        DeviceMotionEvent &&
+        typeof DeviceMotionEvent.requestPermission === "function"
+        ) {
+            DeviceMotionEvent.requestPermission();
+        }
+        if (is_running){
+                window.removeEventListener("devicemotion", dataMotion);
+                window.removeEventListener("deviceorientation", dataOrientation);
+                changeGps();
+
+                var d = new Date();
+                let text = d.toLocaleString();
+                tableToCSV("info",text+"_Gps");
+                tableToCSV("info_acel",text+"_Acelerometer");
+                tableToCSV("info_ori",text+"_Gyroscope");
+                document.querySelector("#Data").style.display = "block";
+                document.querySelectorAll(".tabla")[0].style.display = "none";
+                document.querySelectorAll(".tabla")[1].style.display = "none";
+                document.querySelectorAll(".tabla")[2].style.display = "none";
+                btnGrabar.classList.remove("btn-stop")
+                btnGrabar.classList.add("btn-start")
+                btnGrabar.innerText = "Iniciar grabacion"
+                is_running = false;
+            }else{
+                grabarDatos()
+                document.querySelector("#Data").style.display = "none";
+                document.querySelectorAll(".tabla")[0].style.display = "block";
+                document.querySelectorAll(".tabla")[1].style.display = "block";
+                document.querySelectorAll(".tabla")[2].style.display = "block";
+                btnGrabar.classList.remove("btn-start")
+                btnGrabar.classList.add("btn-stop")
+                btnGrabar.innerText = "Detener grabacion"
+                is_running = true;
+            }
+        };
+        
+
+    </script>
 </body>
 </html>
