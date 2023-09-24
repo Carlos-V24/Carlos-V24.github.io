@@ -1,4 +1,3 @@
-
 /*Modificacion al objeto 'date' para agregarle un metodo para poder
   generar unca cadena en el formato yyyy-mm-dd*/
 Date.prototype.genDate = function (){
@@ -225,7 +224,7 @@ btn.addEventListener("click", ()=>{
                     maxTemp.temp = element;
                     maxTemp.i = i;
                 }
-  
+
             }
             //Genera un objeto con la info necesaria para marcar en la grafica el día mas soleado
             tempMaxData[maxTemp.i] = {
@@ -288,7 +287,7 @@ btn.addEventListener("click", ()=>{
               data: tempMaxData,
               color: "#007E06"
             }],
-            
+
           }
         Highcharts.chart('container', config);//genera la gráfica en el contenedor indicado
         //Muestra las opciones de descarga de archivo
@@ -381,7 +380,7 @@ btn.addEventListener("click", ()=>{
             data: tempMaxData,
             color: "#249E50"
           }],
-          
+
         }
       Highcharts.chart('container', config);//genera la grafica con la configuracion previa
       //Muestra las opciones para la descarga
@@ -395,4 +394,3 @@ btn.addEventListener("click", ()=>{
       }
     })
 })
-
