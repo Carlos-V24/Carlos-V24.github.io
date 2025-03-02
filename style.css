@@ -1,36 +1,62 @@
-.btn-start{
-    background-color: #0e7e0e;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+/* Estilos para el encabezado y el menú */
+.header {
+    background-color: #611232;
+    padding: 10px 0;
     color: white;
-    font-size: 2rem;
-    cursor: pointer;
-    border-radius: 2px;
-    padding: 0.5rem;
-    border: 0 #000;
+    text-align: center;
 }
-.btn-stop{
-    background-color: #a82e2e;
+.header img {
+    height: 50px;
+    vertical-align: middle;
+}
+.nav {
+    background-color: #a57f2c;
+    overflow: hidden;
+}
+.nav a {
+    float: left;
+    display: block;
     color: white;
-    font-size: 2rem;
-    cursor: pointer;
-    border-radius: 2px;
-    padding: 0.5rem;
-    border: 0 #000;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
 }
-.btn-calib{
-    background-color: #283ea0;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-    border-radius: 2px;
-    padding: 0.5rem;
-    border: 0 #000;
+.nav a:hover {
+    background-color: #575757;
 }
-
-.btn-start:hover{
-background-color: #13b913;
-transition: linear 0.1s;
-text-shadow: 2px #000;
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
-#info{
-    display: none;
+h1 {
+    color: #333;
+}
+#map {
+    height: 400px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+canvas {
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+.info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 2rem;
 }

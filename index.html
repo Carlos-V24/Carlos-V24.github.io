@@ -2,45 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-    <title>Aero Design - Actividad 3</title>
+    <title>Document</title>
 </head>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/data.js"></script>
+<script src="https://code.highcharts.com/maps/modules/drilldown.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+<script src="https://code.highcharts.com/mapdata/countries/mx/mx-all.js"></script>
+<link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <body>
-    <div class="topnav">
-        <span id="Mes" class="active">Clima mes</span>
-        <span id="Hora" >Clima hora</span>
-      </div>
-    <div>
-        <input type="number" name="latitude" id="lat" value="19.4326296" placeholder="Latitude">
-        <input type="number" name="longitude" id="lon" value="-99.1331785" placeholder="Longitud">
-        <input type="date" name="fehca" id="fecha">
-        <button id="checar">Checar</button>
+    <!-- Encabezado -->
+    <div class="header">
+        <img src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" alt="Gobierno de México">
     </div>
-    <div id="container"></div>
-    <div id="info">
-        <span>Eliga el formato de descarga</span>
+    <!-- Menú de navegación -->
+    <div class="nav">
+        <a href="#">Inicio</a>
+        <a href="#">Informes</a>
+        <a href="#">Asistencia</a>
+        <a href="https://forms.gle/mXrXE43swhKD1Rf37">Formulario</a>
     </div>
-    <div id="cont-dwld">
-        <div class="options-dwld">
-            <label class="container">.json
-              <input type="radio" name="download" value="JSON" checked>
-              <span class="checkmark"></span>
-            </label>
-            <label class="container">.csv
-              <input type="radio" name="download" value="CSV">
-              <span class="checkmark"></span>
-            </label>
-            <label class="container">.txt
-              <input type="radio" name="download" value="TXT">
-              <span class="checkmark"></span>
-            </label>
-        </div>
-        <button id="descargar">Descargar</button>
-    </div>
-</body>
+<div id="container" style="height: 500px; min-width: 310px; max-width: 800px; margin: 0 auto"></div>
+<div class="info">
+<div>Casos confirmados: <span id="confirmados"></span></div>
+<div>Fallecidos: <span id="muertos"></span></div>
+</div>
+<div style="height: 500px; min-width: 310px; max-width: 800px; margin: 0 auto">
+    <canvas id="myChart"></canvas>
+</div>
+<div style="height: 500px; min-width: 310px; max-width: 800px; margin: 0 auto">
+    <h2>Distribución por edad y sexo</h2>
+    <canvas id="pyramidChart"></canvas>
+</div>
+  
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="./index.js"></script>
+</body>
 </html>
