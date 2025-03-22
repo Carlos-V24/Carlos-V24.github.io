@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flor con Pétalos Realistas</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #87CEEB; /* Fondo azul cielo */
+        }
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="florCanvas" width="600" height="600"></canvas>
+
+    <script>
+        const canvas = document.getElementById('florCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Variables para la animación
+        let angle = 0; // Ángulo para animar los pétalos
+        const petalMovementRange = 10; // Rango de movimiento de los pétalos
+
+        function drawPetal(x, y, width, height, rotation) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rotation+30);
+
+            // Usamos curvas de Bézier para dibujar un pétalo
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.bezierCurveTo(
+                -width / 2, -height / 4,
+                -width / 2, -height / 2,
+                0, -height
+            );
+            ctx.bezierCurveTo(
+                width / 2, -height / 2,
+                width / 2, -height / 4,
+                0, 0
+            );
+            ctx.closePath();
+
+            // Gradiente para el pétalo
+            const gradient = ctx.createLinearGradient(0, -height, 0, 0);
+            gradient.addColorStop(0, '#FFFF00'); // Amarillo claro
+            gradient.addColorStop(1, '#FFD700'); // Amarillo oscuro
+
+            ctx.fillStyle = gradient;
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+            ctx.shadowBlur = 10;
+            ctx.shadowOffsetX = 5;
+            ctx.shadowOffsetY = 5;
+            ctx.fill();
+            ctx.restore();
+        }
+
+        function drawFlower() {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = 120; // Radio de la flor
+            const petalWidth = 50; // Ancho del pétalo
+            const petalHeight = 100; // Alto del pétalo
+            const numPetals = 20; // Número de pétalos
+
+
+            // Dibuja los pétalos con movimiento
+            for (let i = 0; i < numPetals; i++) {
+                const petalAngle = (i / numPetals) * Math.PI * 2;
+                const movement = Math.sin(angle + petalAngle) * petalMovementRange; // Movimiento sinusoidal
+                const petalX = centerX + Math.cos(petalAngle) * (radius + movement);
+                const petalY = centerY + Math.sin(petalAngle) * (radius + movement);
+
+                // Dibuja el pétalo
+                drawPetal(petalX, petalY, petalWidth, petalHeight, petalAngle);
+            }
+
+            // Dibuja el centro de la flor con un gradiente
+            const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, 30);
+            gradient.addColorStop(0, '#FFD700'); // Amarillo claro
+            gradient.addColorStop(1, '#FFA500'); // Amarillo oscuro
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 50, 0, Math.PI * 2);
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            ctx.closePath();
+
+            // Dibuja el tallo
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY + 50);
+            ctx.lineTo(centerX, canvas.height - 50);
+            ctx.strokeStyle = '#008000'; // Verde
+            ctx.lineWidth = 10;
+            ctx.stroke();
+            ctx.closePath();
+
+            // Dibuja las hojas
+            ctx.fillStyle = '#008000'; // Verde
+            ctx.beginPath();
+            ctx.ellipse(centerX + 30, canvas.height - 100, 20, 40, Math.PI / 4, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.ellipse(centerX - 30, canvas.height - 120, 20, 40, -Math.PI / 4, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpia el canvas
+            drawFlower();
+            angle += 0.05; // Incrementa el ángulo para la animación
+            requestAnimationFrame(animate); // Llama a la función de animación
+        }
+
+        animate(); // Inicia la animación
+    </script>
+</body>
+</html>
